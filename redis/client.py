@@ -912,7 +912,7 @@ class Redis(threading.local):
 
 
     #### SORTED SET COMMANDS ####
-    def zadd(self, name, value, score):
+    def zadd(self, name, score, value):
         "Add member ``value`` with score ``score`` to sorted set ``name``"
         return self.execute_command('ZADD', name, score, value)
 
