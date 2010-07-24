@@ -501,7 +501,7 @@ class Redis(threading.local):
         try:
             self.execute_command("SHUTDOWN")
         except ConnectionError as e:
-            return e.endswith("refused.")
+            return str(e).endswith("refused.")
 
     #### BASIC KEY COMMANDS ####
     def append(self, key, value):
