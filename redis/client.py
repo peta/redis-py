@@ -492,6 +492,16 @@ class Redis(threading.local):
         blocking until the save is complete
         """
         return self.execute_command('SAVE')
+    
+    def shutdown(self):
+        """
+        Tell the Redis server to shut himself down. Returns True if shutdown
+        was successful, False otherwise.
+        """
+        try:
+            self.execute_command("SHUTDOWN")
+        except ConnectionError as e:
+            return e.endswith("refused.")
 
     #### BASIC KEY COMMANDS ####
     def append(self, key, value):
